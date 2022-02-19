@@ -7,10 +7,7 @@ class Solution {
             list.add(h);
             s -= h;
         }
-        System.out.println(list);
-        list.set(list.size()-1, list.get(list.size()-1) + s);
-        System.out.println(s);
-        System.out.println(list);
+        list.set(list.size()-1, list.get(list.size()-1) + s); // update last index
         return list;
     }
 }
