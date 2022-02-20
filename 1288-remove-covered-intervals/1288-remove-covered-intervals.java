@@ -1,14 +1,32 @@
 class Solution {
-    public int removeCoveredIntervals(int[][] A) {
-        int res = 0, left = -1, right = -1;
-        Arrays.sort(A, (a, b) -> a[0] - b[0]);
-        for (int[] v : A) {
-            if (v[0] > left && v[1] > right) {
-                left = v[0];
-                ++res;
+    public int removeCoveredIntervals(int[][] intervals) {
+        int removed = 0, last = -1;
+        Arrays.sort(intervals, (a, b) -> a[0] != b[0] ? a[0] - b[0] : b[1] - a[1]);
+        for (int[] i : intervals) {
+            if (i[1] <= last) {
+                removed += 1;
+            } else {
+                last = i[1];
             }
-            right = Math.max(right, v[1]);
         }
-        return res;
+        return intervals.length - removed;
     }
 }
+/*
+Idea
+
+Sort intervals by increasing of startTime and decreasing of endTime
+last = -1: last is the farest end time of browsed intervals
+
+For each interval in intervals
+
+If interval.endTime <= last, means interval is overlapped then we count removed
+else last = interval.endTime
+Result = number of intervals - removed
+
+
+Complexity
+
+Time: O(NlogN)
+Space: O(1)
+*/
