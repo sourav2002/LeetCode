@@ -14,21 +14,23 @@ class Solution {
             return null;
         }
         
-        ListNode current = head;
-        while(current.next != null){
-            current = current.next;
-        }
-        current.next = new ListNode(100);
-        ListNode end = current.next;
-        current = head;
-        while(current != null){
-            System.out.print(current.val+"->");
-            current = current.next;
-        }
-        current = head;
+//         ListNode current = head;
+//         while(current.next != null){
+//             current = current.next;
+//         }
+//         current.next = new ListNode(100);
+//         ListNode end = current.next;
+//         current = head;
+//         while(current != null){
+//             System.out.print(current.val+"->");
+//             current = current.next;
+//         }
+//         current = head;
         
-        ListNode ans = reverse(current, end);
-        return ans;
+//         ListNode ans = reverse(current, end);
+//         return ans;
+        
+        return recursionReverse(head);
     }
     
     public ListNode reverse(ListNode start, ListNode end){
@@ -42,5 +44,16 @@ class Solution {
             current = nextNode;
         }
         return prev;
+    }
+    
+    public ListNode recursionReverse(ListNode head){
+        if(head.next == null){
+            return head;
+        }
+        
+        ListNode newHead = recursionReverse(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
     }
 }
