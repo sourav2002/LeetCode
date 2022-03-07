@@ -13,14 +13,33 @@ class Solution {
         if (head == null) {
             return null;
         }
+        
         ListNode current = head;
-        ListNode prev = null;
-        ListNode nextn = null;
+        while(current.next != null){
+            current = current.next;
+        }
+        current.next = new ListNode(100);
+        ListNode end = current.next;
+        current = head;
         while(current != null){
-            nextn = current.next;
+            System.out.print(current.val+"->");
+            current = current.next;
+        }
+        current = head;
+        
+        ListNode ans = reverse(current, end);
+        return ans;
+    }
+    
+    public ListNode reverse(ListNode start, ListNode end){
+        ListNode current = start;
+        ListNode prev = null;
+        ListNode nextNode = null;
+        while(current != end){
+            nextNode = current.next;
             current.next = prev;
             prev = current;
-            current = nextn;
+            current = nextNode;
         }
         return prev;
     }
