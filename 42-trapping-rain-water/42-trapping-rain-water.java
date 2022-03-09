@@ -1,3 +1,4 @@
+/*
 class Solution {
     public int trap(int[] height) {
         Stack<Integer> x= new Stack<>();
@@ -20,8 +21,8 @@ class Solution {
         return ans;
     }
 }
+*/
 
-/*
 class Solution {
     public int trap(int[] height) {
         if(height.length==0){
@@ -53,7 +54,6 @@ class Solution {
         return water;
     }
 }
-*/
 
 /*
 class Solution {
