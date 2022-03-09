@@ -1,32 +1,31 @@
 class Solution {
-    public int trap(int[] arr) {
-        int n = arr.length;
-        int[] maxL = new int[n];
-        int[] maxR = new int[n];
-        int[] water = new int[n];
-        
-        int max = 0;
-        for(int l=0; l< n; l++){
-            max = Math.max(max, arr[l]);
-            maxL[l] = max;
+    public int trap(int[] height) {
+        if(height.length==0){
+            return 0;
         }
-        
-        max = 0;
-        for(int r = n-1; r>=0; r--){
-            max = Math.max(max, arr[r]);
-            maxR[r] = max;
+        int maxht = 0,index=0;
+        for(int i=0;i<height.length;i++){
+            if(height[i]>maxht){
+                maxht=height[i];
+                index=i;
+            }
         }
-        
-        for(int w =0; w<n; w++){
-            int wtr = Math.min(maxL[w], maxR[w]) - arr[w];
-            water[w] = wtr;
+        int localmax=height[0];
+        int globalmax=height[index];
+        int water=0;
+        for(int i=1;i<index;i++){
+            if(height[i]<localmax){
+                water+=localmax-height[i];
+            }
+            localmax=Math.max(localmax,height[i]);
         }
-        
-        int ans = 0;
-        for(int i : water){
-            ans += i;
+         localmax=height[height.length-1];
+        for(int i=height.length-2;i>index;i--){
+            if(height[i]<localmax){
+                water+=localmax-height[i];
+            }
+            localmax=Math.max(localmax,height[i]);
         }
-        
-        return ans;
+        return water;
     }
 }
