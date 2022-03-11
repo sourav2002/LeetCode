@@ -26,5 +26,5 @@ class Solution {
  put all numbers of array in a hashmap because it is easy to check if an array has x element or not
  now run a for loop and check if the number has not any previous value because we need consecutive sequence and it    requires 1st element to be smallest in the subset of consecutive seq.
  
- check if hashmap contains( current num + 1) if yes then update currentnum and increment current streak of sequence 
+ check if hashmap contains( current num + 1 ) if yes then update currentnum and increment current streak of sequence 
 */
