@@ -1,4 +1,21 @@
 class Solution {
+    private void swap(int[] a, int x, int y){
+        int t = a[x];
+        a[x] = a[y];
+        a[y] = t;
+    }
+    public void sortColors(int[] a) {
+        int start = 0, mid = 0, pivot = 1, end = a.length - 1;
+        while(mid <= end){
+            if(a[mid] < pivot) swap(a, start++, mid++);
+            else if(a[mid] > pivot) swap(a, mid, end--);
+            else mid++;
+        }
+    }
+}
+
+/*
+class Solution {
         public static void sortColors(int[] arr) {
         int size = arr.length;
         int low = 0, mid = 0, high = size - 1;
@@ -33,3 +50,4 @@ class Solution {
         arr[y] = temp;
     }
 }
+*/
