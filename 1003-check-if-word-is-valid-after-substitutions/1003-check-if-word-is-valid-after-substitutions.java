@@ -1,16 +1,30 @@
 class Solution {
-        public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<>();
-        for (char c: s.toCharArray()) {
-            if (c == 'c') {
-                if (stack.isEmpty() || stack.pop() != 'b') return false;
-                if (stack.isEmpty() || stack.pop() != 'a') return false;
-            } else {
-                stack.push(c);
-            }
+    
+    public boolean isValid(String S) {
+        boolean x = true;
+        while(x) {
+            if(S.indexOf("abc")!= -1){
+                S = S.replaceAll("abc", "");  
+                x = true;
+            } else{
+                x = false;
+            } 
         }
-        return stack.isEmpty();
+        return S.equals("")?true:false;
     }
+    
+    //     public boolean isValid(String s) {
+    //     Stack<Character> stack = new Stack<>();
+    //     for (char c: s.toCharArray()) {
+    //         if (c == 'c') {
+    //             if (stack.isEmpty() || stack.pop() != 'b') return false;
+    //             if (stack.isEmpty() || stack.pop() != 'a') return false;
+    //         } else {
+    //             stack.push(c);
+    //         }
+    //     }
+    //     return stack.isEmpty();
+    // }
     
     /*
     public boolean isValid(String s) {
