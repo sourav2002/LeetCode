@@ -1,5 +1,34 @@
 class Solution {
     public int digArtifacts(int n, int[][] artifacts, int[][] dig) {
+        boolean [][] arr = new boolean[n][n];
+        
+        for(int [] digged : dig){
+            arr[digged[0]][digged[1]] = true;
+        }
+        
+        int count = 0;
+        
+        for(int artifact[] : artifacts){
+            boolean canBeExtracted = true;
+            
+            for(int i =artifact[0]; i<=artifact[2]; i++){
+                for(int j = artifact[1]; j<= artifact[3]; j++){
+                    if(!arr[i][j]){
+                        canBeExtracted = false;
+                        break;
+                    }
+                }
+            }
+            
+            if(canBeExtracted) count++;
+        }
+        return count;
+    }
+}
+
+/*
+class Solution {
+    public int digArtifacts(int n, int[][] artifacts, int[][] dig) {
         HashSet<String> set = new HashSet<>();
         for (int d[] : dig) set.add(d[0] + " " + d[1]);
         int c = 0;
@@ -16,3 +45,4 @@ class Solution {
     }
 }
 //TC = O(DIG + N^2)
+*/
