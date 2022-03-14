@@ -1,7 +1,9 @@
 class Solution {
     public String simplifyPath(String path) {
+        
         StringBuilder sb = new StringBuilder();
         String [] arr = path.split("/");
+        
         Stack<String> st = new Stack<>();
         for(int i=0; i< arr.length; i++){
             if(arr[i].equals("..")){
@@ -15,6 +17,7 @@ class Solution {
         if(st.isEmpty()) return "/";
         while(!st.isEmpty()){
             sb.insert(0, st.pop()).insert(0,"/");
+            // sb.append("/").append(st.pollLast());
         }
         
         return sb.toString();
