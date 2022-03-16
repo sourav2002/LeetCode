@@ -11,11 +11,7 @@ class Solution {
                 popind++;
             }
         }
-        
-        while( popind < popped.length && !st.isEmpty() && st.peek() == popped[popind++]  ){
-            st.pop();
-        }
-        
+
         if(st.isEmpty()){
             return true;
         }
