@@ -1,3 +1,41 @@
+/*
+
+hashmap - cache    [ key, val ]
+hashmap - keycount [ key, freq of key ] 
+hashmap - freqMap  [ freq, list of same freq keys]
+
+put(key, value) - > 
+    
+    case 1 : if(cache.containsKey(key))
+        1 if cache.containsKey then update value of key just by putting key in cacheMap again
+        2 update the freq val of key in keyCount and break using return keyword
+        
+    case 2 :  if(cache.size() >= capacity)
+        if key does not exists, check the size of the cache, if it is greater or equal to given capacity
+        then remove LRU element.
+        1 remove LRU from cache and freqMap and keyMap (from all hashMaps)
+        2 follow case 3 steps
+
+    case 3 : if(case2 and case 3 false)
+        1. put key value pair in cache, add key with freq in keyCount map ( keyCount.put(key, 1); )
+        2. also add element in same freq elements list according to freq of the key 
+        3. update min variable = 1;
+        
+get(key)  - >
+    case 1 : if cache.contains key == false 
+        return -1;
+        
+    case 2 : else 
+        1 update the freq of that key in keycount map
+        2 remove the key from the list of old freq elements from freqMap bcz now the freq of the key is incremented
+        3 if after removing the list from freqMap get empty then min++;
+        4 if freqMap does not have list for new freq then create new list else add it in that list
+        5 now add element in new freq list 
+        return key.value;
+
+*/
+
+
 public class LFUCache{
     
     HashMap<Integer, Integer> cache = new HashMap<>();
