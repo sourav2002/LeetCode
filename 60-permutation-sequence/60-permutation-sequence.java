@@ -26,3 +26,28 @@ class Solution {
         return ans;
     }
 }
+/*
+say n = 4, you have {1, 2, 3, 4} , k = 17th
+
+If you were to list out all the permutations you have
+
+1 + (permutations of 2, 3, 4)
+
+2 + (permutations of 1, 3, 4)
+
+3 + (permutations of 1, 2, 4)
+
+4 + (permutations of 1, 2, 3)
+
+here fact = n-1! = 3! = 6
+k = 17 - 6 = 16 (for 0 indexed )
+
+now add k / fact in ans --> 16 / 6 = 2 --> 0 index , means first digit is 3 
+remove that digit from num and also update k = k % fact  --> 16 % 4 = 4
+ now we have 1, 2, 4 left , so factorial should be n-1 which means 2! = 2
+{1, 2, 4}, k = 4, fact = 2
+repeat all steps again
+
+and after some steps, our num will have been empty, then stop while loop and return ans 
+
+*/
