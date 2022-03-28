@@ -24,14 +24,17 @@ class Solution {
     }
     */
     public boolean solve(char[][] board, int i, int j) {
-        if(i == 9 && j == 0) return true;
-        // if board[i][j] already has a value then skip 
-        if(board[i][j] != '.') return solve(board, (j+1) == 9? i+1 : i, (j+1) == 9? 0 : j+1);
+        // if(i == 9 && j == 0) return true;
+        // if(board[i][j] != '.') return solve(board, (j+1) == 9? i+1 : i, (j+1) == 9? 0 : j+1);
+        if(i==9) return true;
+        if(j==9) return solve(board, i+1, 0);
+        if(board[i][j] != '.') return solve(board, i, j+1);
         
-        for(char num = '1'; num <= '9'; num++) {
-            if(isValid(board, i, j, num)){
-                board[i][j] = num;
-                if(solve(board, (j+1) == 9? i+1 : i, (j+1) == 9? 0 : j+1)) return true;
+        for(char c = '1'; c <= '9'; c++) {
+            if(isValid(board, i, j, c)){
+                board[i][j] = c;
+                // if(solve(board, (j+1) == 9? i+1 : i, (j+1) == 9? 0 : j+1)) return true;
+                if(solve(board, i, j+1)) return true;               
                 board[i][j] = '.';
             }
         }
@@ -40,14 +43,13 @@ class Solution {
         
     }
     
-    boolean isValid(char[][] board, int row, int col, char c){
-        for(int i=0; i< 9; i++){
-            if(board[i][col] == c) return false;
-            
-            if(board[row][i] == c) return false;
-            
-            if(board[3* (row/3)+ i/ 3] [3 * (col/3) + i%3] == c) return false;            
-        }
+    boolean isValid(char[][] board, int i, int j, char val){
+        int row = i - i%3, column = j - j%3;
+        for(int x=0; x<9; x++) if(board[x][j] == val) return false;
+        for(int y=0; y<9; y++) if(board[i][y] == val) return false;
+        for(int x=0; x<3; x++)
+        for(int y=0; y<3; y++)
+            if(board[row+x][column+y] == val) return false;
         return true;
     }
 }
