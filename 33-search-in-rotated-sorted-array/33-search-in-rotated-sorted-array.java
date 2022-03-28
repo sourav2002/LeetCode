@@ -5,8 +5,10 @@ class Solution {
         
         while( low <= high){
             int mid = (low + high) >>> 1;
+            
             if(nums[mid] == target) return mid;
-            if (nums[low] <= nums[mid] ){
+            
+            if (nums[low] <= nums[mid] ){ // check if left array of mid is sorted or not
                 if(target >= nums[low] && target <= nums[mid]){
                     high = mid -1;
                 }else{
