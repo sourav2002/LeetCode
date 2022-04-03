@@ -8,7 +8,7 @@ class Solution {
         if(k > max) return 0;
         
         long low = 1;
-        long high = max;
+        long high = max/k;
         long res = -1;
         
         while(low <= high){
