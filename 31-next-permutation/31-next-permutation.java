@@ -1,6 +1,6 @@
 class Solution {
     public void nextPermutation(int[] a) {
-if (a == null || a.length <= 1) {
+        if (a == null || a.length <= 1) {
             return;
         }
         int i = a.length - 2;
