@@ -11,34 +11,25 @@
 class Solution {
 
     public ListNode swapNodes(ListNode head, int k) {
-        ListNode temp = new ListNode();
-        temp = head;
-        int len = 0;
-        ListNode first = null;
-        int st = 1;
-        while (temp != null) {
-            if (st == k) {
-                first = temp;
+        ListNode curr = head;
+        ListNode pointer1 = head;
+        ListNode pointer2 = head;
+        int count = 1;
+
+        while (curr.next != null) {
+            if (count < k) {
+                pointer1 = pointer1.next;
+            } else {
+                pointer2 = pointer2.next;
             }
-            temp = temp.next;
-            len++;
-            st++;
+            curr = curr.next;
+            count++;
         }
-        int last = len - k + 1;
-        st = 1;
-        temp = head;
-        ListNode second = null;
-        while (temp != null) {
-            if (st == last) {
-                second = temp;
-            }
-            temp = temp.next;
-            st++;
-        }
-        ListNode t = new ListNode();
-        t.val = first.val;
-        first.val = second.val;
-        second.val = t.val;
+
+        int temp = pointer1.val;
+        pointer1.val = pointer2.val;
+        pointer2.val = temp;
+
         return head;
     }
 }
