@@ -22,7 +22,30 @@ class Solution {
     }
 }
 */
+class Solution {
+    public int trap(int[] height) {
+        // time : O(n)
+        // space : O(1)
+        if (height.length==0) return 0; 
+        int left = 0, right = height.length-1; 
+        int leftMax=0, rightMax=0; 
+        int ans = 0; 
+        while (left < right) {
+            if (height[left] > leftMax) leftMax = height[left]; 
+            if (height[right] > rightMax) rightMax = height[right];
+            if (leftMax < rightMax) {
+                ans += Math.max(0, leftMax-height[left]); 
+                left++; 
+            } else {
+                ans += Math.max(0, rightMax-height[right]); 
+                right--; 
+            }
+        }
+        return ans; 
+    }
+}
 
+/*
 class Solution {
     public int trap(int[] height) {
         if(height.length==0){
@@ -36,7 +59,6 @@ class Solution {
             }
         }
         int localmax=height[0];
-        int globalmax=height[index];
         int water=0;
         for(int i=1;i<index;i++){
             if(height[i]<localmax){
@@ -44,7 +66,7 @@ class Solution {
             }
             localmax=Math.max(localmax,height[i]);
         }
-         localmax=height[height.length-1];
+        localmax=height[height.length-1];
         for(int i=height.length-2;i>index;i--){
             if(height[i]<localmax){
                 water+=localmax-height[i];
@@ -54,6 +76,7 @@ class Solution {
         return water;
     }
 }
+*/
 
 /*
 class Solution {
@@ -77,7 +100,7 @@ class Solution {
             }
             localmax=Math.max(localmax,height[i]);
         }
-         localmax=height[height.length-1];
+        localmax=height[height.length-1];
         for(int i=height.length-2;i>index;i--){
             if(height[i]<localmax){
                 water+=localmax-height[i];
