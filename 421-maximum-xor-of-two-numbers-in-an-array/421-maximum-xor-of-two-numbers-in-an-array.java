@@ -1,4 +1,5 @@
 class Solution {
+    
     class Trie {
         Trie[] children;
         public Trie() {
@@ -7,14 +8,12 @@ class Solution {
     }
     
     public int findMaximumXOR(int[] nums) {
-        if(nums == null || nums.length == 0) {
-            return 0;
-        }
+
         // Init Trie.
         Trie root = new Trie();
         for(int num: nums) {
             Trie curNode = root;
-            for(int i = 30; i >= 0; i --) {
+            for(int i = 30; i >= 0; i--) {
                 int curBit = (num >>> i) & 1;
                 if(curNode.children[curBit] == null) {
                     curNode.children[curBit] = new Trie();
@@ -28,7 +27,7 @@ class Solution {
             int curSum = 0;
             for(int i = 30; i >= 0; i --) {
                 int curBit = (num >>> i) & 1;
-                if(curNode.children[1 - curBit] != null) {
+                if(curNode.children[1 ^ curBit] != null) {
                     curSum += (1 << i);
                     curNode = curNode.children[1 - curBit];
                 }else {
