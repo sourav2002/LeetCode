@@ -17,3 +17,13 @@ class Solution {
         return (int)(res % (1e9 + 7));
     }
 }
+/*
+Loop i on all numbers,
+loop j on all numbers,
+check if k = target i - j is valid.
+Add the number of this combination to result.
+3 cases covers all possible combination:
+   1. i == j == k
+   2. i == j != k
+   3. i < k && j < k
+*/
