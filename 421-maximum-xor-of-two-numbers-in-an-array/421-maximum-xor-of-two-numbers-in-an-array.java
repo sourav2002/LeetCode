@@ -1,53 +1,43 @@
-class Node{
-    Node [] child;
-    int cn;
-    public Node(){
-        child = new Node[2];
-        cn = 0;
-    }
-}
-
-class Trie{
-    static Node root;
-    
-    public Trie(){
-        root = new Node();
-    }
-    
-    public void insert(int num){
-        Node cur = root;
-        for(int i=30; i>=0; i--){
-            int bit = (num >>> i) & 1;
-            if(cur.child[bit] == null){
-                cur.child[bit] = new Node();
-            }
-            cur = cur.child[bit];
-        }
-    }
-}
-
 class Solution {
-    public int findMaximumXOR(int[] nums) {
-        Trie obj = new Trie();
-        Node root = new Node();
-        for(int num :  nums){
-            obj.insert(num);
+
+    class Trie {
+        Trie[] children;
+
+        public Trie() {
+            children = new Trie[2];
         }
-        
+    }
+
+    public int findMaximumXOR(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        // Init Trie.
+        Trie root = new Trie();
+        for (int num : nums) {
+            Trie curNode = root;
+            for (int i = 31; i >= 0; i--) {
+                int curBit = (num >>> i) & 1;
+                if (curNode.children[curBit] == null) {
+                    curNode.children[curBit] = new Trie();
+                }
+                curNode = curNode.children[curBit];
+            }
+        }
         int max = Integer.MIN_VALUE;
-        for(int num : nums){
-            Node cur = obj.root;
-            int sum = 0;
-            for(int i=30; i>=0; i--){
-                int bit = (num >>> i) & 1;
-                if(cur.child[1-bit] != null){
-                    sum += (1 << i);
-                    cur = cur.child[1-bit];
-                }else{
-                    cur = cur.child[bit];
+        for (int num : nums) {
+            Trie curNode = root;
+            int curSum = 0;
+            for (int i = 31; i >= 0; i--) {
+                int curBit = (num >>> i) & 1;
+                if (curNode.children[curBit ^ 1] != null) {
+                    curSum += (1 << i);
+                    curNode = curNode.children[curBit ^ 1];
+                } else {
+                    curNode = curNode.children[curBit];
                 }
             }
-            max = Math.max(max, sum);
+            max = Math.max(curSum, max);
         }
         return max;
     }
