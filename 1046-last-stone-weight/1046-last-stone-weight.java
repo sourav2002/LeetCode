@@ -11,10 +11,7 @@ class Solution {
             int a = pq.poll();
             int b = pq.poll();
 
-            if (a == b) {
-                continue;
-            }
-            else pq.add(a-b);
+            if (a != b) pq.add(a-b);
         }
         
         if (pq.isEmpty()) {
