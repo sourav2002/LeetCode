@@ -1,5 +1,8 @@
 class Solution {
     public int[] maxSlidingWindow(int[] a, int k) {
+        if (a == null || k <= 0) {
+			return new int[0];
+		}
         int n = a.length;
         int[] ans = new int[n - k +1];
         int ind = 0;
