@@ -13,6 +13,34 @@
  *     }
  * }
  */
+// use only auxilary stack space
+class Solution {
+
+    TreeNode cur = null;
+    public TreeNode increasingBST(TreeNode root) {
+        if(root == null) return null;
+        
+        TreeNode res = new TreeNode(-1);
+        cur = res;
+        inorder(root);
+        return res.right;
+    }
+    
+    public void inorder(TreeNode node){
+        if(node == null) return;
+        
+        inorder(node.left);
+        // break the left link and add current node at the right of res (cur TreeNode pointing to res)
+        node.left = null;
+        cur.right = node;
+        cur = node;
+        
+        inorder(node.right);
+    }
+}
+// using extra space O(n)
+// time complexity also O(n)
+/*
 class Solution {
     
     List<TreeNode> list = new ArrayList();
@@ -38,3 +66,4 @@ class Solution {
         inorder(node.right);
     }
 }
+*/
