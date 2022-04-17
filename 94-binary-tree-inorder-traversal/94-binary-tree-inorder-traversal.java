@@ -16,15 +16,21 @@
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> list = new ArrayList();
-        inorder(root,list);
-        return list;
-    }
-    
-    public void inorder(TreeNode node, List<Integer> list){
-        if(node == null) return;
+        if(root == null) return list;
+        Stack<TreeNode> st = new Stack();
         
-        inorder(node.left,list);
-        list.add(node.val);
-        inorder(node.right,list);
+        TreeNode node =  root;
+        while( node != null || !st.isEmpty()){
+            if(node != null){
+                st.push(node);
+                node = node.left;
+            }
+            else{
+                node = st.pop();
+                list.add(node.val);
+                node = node.right;
+            }
+        }
+        return list;
     }
 }
