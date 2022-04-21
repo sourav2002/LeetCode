@@ -26,7 +26,7 @@ class Solution {
     
     public TreeNode build(int[] preorder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd, Map<Integer, Integer> inMap){
         
-        if(preStart > preEnd || inStart > inEnd){ //base case
+        if(preStart > preEnd){ //base case
             return null;
         }
         
