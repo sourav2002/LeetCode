@@ -20,23 +20,23 @@ class Solution {
             inMap.put(inorder[i], i);
         }
         
-        TreeNode root = build(preorder, 0, preorder.length-1, inorder, 0, inorder.length-1, inMap);
+        TreeNode root = build(preorder, inorder, 0, inorder.length-1, inMap, 0);
         return root;
     }
     
-    public TreeNode build(int[] preorder, int preStart, int preEnd, int[] inorder, int inStart, int inEnd, Map<Integer, Integer> inMap){
+    public TreeNode build(int[] preorder, int[] inorder, int s, int e, Map<Integer, Integer> inMap, int preInd){
         
-        if(preStart > preEnd){ //base case
+        if(s > e){ //base case
             return null;
         }
         
-        TreeNode root = new TreeNode(preorder[preStart]);
-        int inRoot = inMap.get(preorder[preStart]);
-        int numsLeft = inRoot - inStart;
+        TreeNode root = new TreeNode(preorder[preInd]);
         
-        root.left = build(preorder, preStart+1, preStart+numsLeft, inorder, inStart,  inRoot-1, inMap);
+        int inRoot = inMap.get(preorder[preInd]);
         
-        root.right = build(preorder, preStart+numsLeft+1, preEnd, inorder, inRoot+1, inEnd, inMap );
+        root.left = build(preorder,inorder, s,  inRoot-1, inMap, preInd+1);
+        
+        root.right = build(preorder,inorder, inRoot+1, e, inMap, (preInd+1)+(inRoot-s) );
         
         return root;
         
