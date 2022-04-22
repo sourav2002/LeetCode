@@ -25,7 +25,7 @@ class Solution {
 */
 
 
-/*
+
 // DFS traversal( right -> Left -> root)
 class Solution {
 
@@ -42,11 +42,11 @@ class Solution {
         
     }
 }
-*/
 
 
 
-// (Linear traversal using stack)
+/*
+// (Linear traversal using stack) 3ms 14% fast 
 class Solution {
 
     public void flatten(TreeNode root) {
@@ -66,8 +66,8 @@ class Solution {
                 cur.right = st.peek();
                 cur.left = null;
             }
-            
         }
     }
 }
+*/
 
