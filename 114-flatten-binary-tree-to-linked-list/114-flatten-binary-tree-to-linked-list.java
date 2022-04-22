@@ -1,10 +1,10 @@
-/*
+
 // morris traversal (create connection of root's left extreme right node with root's right node)
 class Solution {
 
     public void flatten(TreeNode root) {
         TreeNode cur = root;
-        if(root == null) return;
+        
         while (cur != null) {
             if (cur.left == null) {
                 cur = cur.right;
@@ -22,11 +22,11 @@ class Solution {
         }
     }
 }
-*/
 
 
 
-// DFS traversal( right -> Left -> root)
+/*
+// DFS traversal( right -> Left -> root) 1ms 68.49% fast
 class Solution {
 
     TreeNode prev = null;
@@ -42,7 +42,7 @@ class Solution {
         
     }
 }
-
+*/
 
 
 /*
