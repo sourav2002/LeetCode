@@ -2,17 +2,18 @@ public class Codec {
 
     Map<String, String> map = new HashMap();
     String host = "http://tinyurl.com/";
+    Random rand = new Random();
     
     public String hashing(String longUrl){
         String hashcode = "";
         for(int i=0; i<6; i++){
-            int random = (int)Math.random() % 3;
-            
-            if(random == 0) hashcode += '0' + Math.random() % 10;
-            else if(random == 1) hashcode += 'a' + Math.random() % 26;
-            else  hashcode += 'A' + Math.random() % 26;
+            int random = rand.nextInt(3);
+            if(random == 0) hashcode += (char)(rand.nextInt(10) + '0');
+            else if(random == 1) hashcode +=(char) (rand.nextInt(26)+ 'a');
+            else  hashcode +=(char) (rand.nextInt(26)+'A');
         }
         
+        System.out.println(hashcode);
         if(map.containsKey(hashcode)){
             return hashing(longUrl);
         }else{
