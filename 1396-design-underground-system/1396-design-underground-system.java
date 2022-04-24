@@ -1,49 +1,27 @@
-
-class Pair{
-    
-    String stationName;
-    int startTime;        
-    public Pair(String s, int t){
-        stationName = s;
-        startTime = t;
-    }
-}
-
-
 class UndergroundSystem {
+    Map<Integer, Pair<String, Integer>> checkInMap = new HashMap<>();  // Uid - {StationName, Time}
+    Map<String, Pair<Double, Integer>> routeMap = new HashMap<>(); // RouteName - {TotalTime, Count}
 
-    Map<Integer, Pair> checkInMap;
-    Map<String, double[]> path; 
-    
-    public UndergroundSystem() {
-        checkInMap = new HashMap<>();
-        path = new HashMap<>();
+    public UndergroundSystem() {}
+
+    public void checkIn(int id, String stationName, int t) {
+        checkInMap.put(id, new Pair<>(stationName, t));
     }
-    
-    public void checkIn(int id, String stationName, int t) { 
-        checkInMap.put(id, new Pair(stationName, t));
-    }
-    
+
     public void checkOut(int id, String stationName, int t) {
-        Pair pair = checkInMap.get(id);
-        int startT = pair.startTime;
-        int endT = t;
-        int totalT = endT-startT;
-        String from = pair.stationName;
-        String to = stationName;
-        String sourceToDest = from +"-" + to;
+        Pair<String, Integer> checkIn = checkInMap.get(id);
+        checkInMap.remove(id); // Remove after using it which will not make HashTable big
 
-        double[] data = path.getOrDefault(sourceToDest, new double[2]);
-        data[0] += totalT;
-        data[1]++;
-        path.put(sourceToDest, data);
+        String routeName = checkIn.getKey() + "_" + stationName;
+        int totalTime = t - checkIn.getValue();
+
+        Pair<Double, Integer> route = routeMap.getOrDefault(routeName, new Pair<>(0.0, 0));
+        routeMap.put(routeName, new Pair<>(route.getKey() + totalTime, route.getValue() + 1));
     }
-    
+
     public double getAverageTime(String startStation, String endStation) {
-        String sourceToDest = startStation +"-"+ endStation;
-        double[] data = path.get(sourceToDest);
-    
-        double ans = data[0] / data[1];
-        return ans;
+        String routeName = startStation + "_" + endStation;
+        Pair<Double, Integer> trip = routeMap.get(routeName);
+        return trip.getKey() / trip.getValue();
     }
 }
