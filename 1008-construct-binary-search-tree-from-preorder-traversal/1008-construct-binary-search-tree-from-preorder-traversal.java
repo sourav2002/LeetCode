@@ -14,19 +14,20 @@
  * }
  */
 class Solution {
-    int i = 0;
+    // int i = 0;
     public TreeNode bstFromPreorder(int[] preorder) {
-        return solve(preorder, Integer.MAX_VALUE);
+        
+        return solve(preorder, Integer.MAX_VALUE, new int[]{0});
     }
     
-    public TreeNode solve(int[] arr, int bound){
-        if( i == arr.length || arr[i] > bound){
+    public TreeNode solve(int[] arr, int bound, int[] i){
+        if( i[0] == arr.length || arr[i[0]] > bound){
             return null;
         }
         
-        TreeNode root = new TreeNode(arr[i]);
-        root.left = solve(arr, arr[i++]);
-        root.right = solve(arr, bound);
+        TreeNode root = new TreeNode(arr[i[0]]);
+        root.left = solve(arr, arr[i[0]++], i);
+        root.right = solve(arr, bound, i);
         return root;
     }
 }
