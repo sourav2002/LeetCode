@@ -10,15 +10,9 @@
 
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(root == null){
-            return root;
-        }
-        if(p.val < root.val && q.val < root.val){
-            return lowestCommonAncestor(root.left, p, q);
-        }
         
-        if(p.val > root.val && q.val > root.val){
-            return lowestCommonAncestor(root.right, p, q);
+        while((root.val-p.val)*(root.val-q.val)>0){//root.val greater or less than both given val;
+           root = root.val>p.val? root.left: root.right;
         }
         return root;
     }
