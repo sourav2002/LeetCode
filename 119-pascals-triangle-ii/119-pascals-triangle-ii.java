@@ -1,4 +1,33 @@
 class Solution {
+    public List<Integer> getRow(int row) {
+        
+        List<Integer> prev = new ArrayList<>();
+        if(row==0){   //case 1
+            prev.add(1);
+            return prev;
+        }
+
+        
+        for( int index =0; index < row; index++){
+            
+            List <Integer> curr= new ArrayList<>(); //new arrayList
+            
+            curr.add(1); //adding 1 because it should start with one
+            for( int i=1 ;i<prev.size();i++){
+                int sum= prev.get(i)+prev.get(i-1);
+                curr.add(sum);
+            }
+            curr.add(1); //adding 1 because it should end with one
+            
+            // prev = new ArrayList<Integer>();
+            prev = curr;    //assigning new arrayList to prev one
+        }
+        return prev; //return list
+    }
+}
+
+/*
+class Solution {
     public List<Integer> getRow(int rowIndex) {
         List<Integer> row = new ArrayList();
         List<Integer> previous = null; 
@@ -19,3 +48,4 @@ class Solution {
         return row;
     }
 }
+*/
