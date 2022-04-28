@@ -35,11 +35,11 @@ class Solution {
         
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
+        ListNode slow = dummy, fast=dummy;
         
-        ListNode slow = dummy, fast=head;
-        
+        // find length of list to validate k
         int len = 0;
-        while(fast != null){
+        while(fast.next != null){
             fast = fast.next;
             len++;
         }
