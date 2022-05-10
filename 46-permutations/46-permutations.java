@@ -1,38 +1,33 @@
 class Solution {
-    public List<List<Integer>> permute(int[] arr) {
-        List<List<Integer>> ans = new ArrayList();
-        backtrack(0, ans, arr);
-        return ans;
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> list = new ArrayList();
+        backtrack(list, 0, nums);
+        return list;
     }
     
-    public void backtrack(int ind, List<List<Integer>> ans, int[] arr){
-        if(ind == arr.length-1){
-            
-            // put all values of arr in arraylist
-            List<Integer> ds = new ArrayList();
-            for(int i=0; i<arr.length; i++){
-                ds.add(arr[i]);
+    
+    public void backtrack(List<List<Integer>> list , int ind, int[] nums){
+        if(ind == nums.length){
+            List<Integer> li = new ArrayList();
+            for(int i : nums){
+                li.add(i);
             }
-            ans.add(new ArrayList<>(ds));
+            
+            list.add(li);
             return;
         }
         
-        for(int i= ind; i< arr.length; i++){
-            swap(i, ind, arr );
-            backtrack(ind+1, ans, arr);
-            swap(i, ind, arr);
+        for(int i = ind; i < nums.length; i++){
+            swap(i, ind, nums);
+            backtrack(list, ind+1, nums);
+            swap(i, ind, nums); //backtracking 
+            
         }
     }
+     public void swap(int i, int ind , int[] nums){
+         int t = nums[i];
+         nums[i] = nums[ind];
+         nums[ind] = t;
+     }
     
-    public void swap(int i, int ind, int[] arr){
-        int t = arr[i];
-        arr[i] = arr[ind];
-        arr[ind] = t;
-    }
 }
-/*
-                                    1  2  3
-                                   /   |    \
-                           (swap 1) (swap 2) (swap 3)
-                           
-*/
