@@ -41,7 +41,7 @@ class Hanoi {
         long moves=(long)Math.pow(2,N)-1;
         if(N==0)
         {
-            return moves;
+            return 0;
         }
         
         toh(N-1,from,aux,to);
