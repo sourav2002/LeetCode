@@ -34,8 +34,8 @@ class Solution {
             if(isValid(board, i, j, c)){
                 board[i][j] = c;
                 // if(solve(board, (j+1) == 9? i+1 : i, (j+1) == 9? 0 : j+1)) return true;
-                if(solve(board, i, j+1)) return true;               
-                board[i][j] = '.';
+                if(solve(board, i, j+1)) return true;// recursion call 
+                board[i][j] = '.'; // backtrack
             }
         }
         
@@ -48,8 +48,8 @@ class Solution {
         for(int x=0; x<9; x++) if(board[x][j] == val) return false;
         for(int y=0; y<9; y++) if(board[i][y] == val) return false;
         for(int x=0; x<3; x++)
-        for(int y=0; y<3; y++)
-            if(board[row+x][column+y] == val) return false;
+            for(int y=0; y<3; y++)
+                if(board[row+x][column+y] == val) return false;
         return true;
     }
 }
