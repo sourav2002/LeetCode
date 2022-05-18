@@ -1,10 +1,10 @@
 class Solution {
     public void solveSudoku(char[][] board) {
-        // solve(board);
-        solve(board,0,0);
+        solve(board);
+        // solve(board,0,0);
     }
     
-   /*
+   
     boolean solve(char[][] board){
         for(int i=0; i< 9; i++){
             for(int j=0; j< 9; j++){
@@ -22,7 +22,7 @@ class Solution {
         }
         return true; // loop runs successfully. (means we have filled all empty indexes)
     }
-    */
+    
     public boolean solve(char[][] board, int i, int j) {
         // if(i == 9 && j == 0) return true;
         // if(board[i][j] != '.') return solve(board, (j+1) == 9? i+1 : i, (j+1) == 9? 0 : j+1);
