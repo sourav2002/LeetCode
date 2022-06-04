@@ -1,4 +1,4 @@
-
+/*
 class Solution {
     public List<List<String>> solveNQueens(int n) {
         char[][] board = new char[n][n];
@@ -27,7 +27,7 @@ class Solution {
             }
         }
     }
-    /*
+    
     
                            (row--, col--)                        <-\
                                          \                          \
@@ -36,17 +36,26 @@ class Solution {
                                            /                         /               
                                           /                         /    
                            (row++, col--)                        <-/     
-    */
+    
 
     public boolean safe(int row, int col, char[][] board, int n){
-        for(int i= row, j = col; i>= 0 && j >= 0; i--, j-- ){
-            if(board[i][j] == 'Q') return false;
+        int originalRow = row;
+        int originalCol = col;
+        while( row >= 0 && col >= 0){ // upper diagonal wise (row-- and col--)
+            if(board[row][col] == 'Q') return false;
+            row--; col--;
         }
-        for(int i= row, j = col; i>= 0 && j >= 0; j-- ){
-            if(board[i][j] == 'Q') return false;
+        row = originalRow;
+        col = originalCol;
+        while(col >= 0){ // in same row (<-- straight)
+            if(board[row][col] == 'Q') return false;
+            col--;
         }
-        for(int i= row, j = col; i<n && j >= 0; i++, j-- ){
-            if(board[i][j] == 'Q') return false;
+        row = originalRow;
+        col = originalCol;
+        while(row <n && col >= 0){ // lower diagonally ( row++ and col--)
+            if(board[row][col] == 'Q') return false;
+            row++; col--;
         }
         
         return true;
@@ -62,10 +71,9 @@ class Solution {
         return ans;
     }
 }
-
+*/
 
     
-    /*
 class Solution {
 
     public List<List<String>> solveNQueens(int n) {
@@ -98,8 +106,10 @@ class Solution {
                 firstHash[n - 1 + row - col] = 1;
                 rowHash[row] = 1;
                 thirdHash[col + row] = 1;
+                                // recursive call
                 backtrack(col + 1, chessBoard, ans, n, firstHash, rowHash, thirdHash);
-                chessBoard[row][col] = '.'; // backtrack
+                                // backtrack
+                chessBoard[row][col] = '.'; 
                 firstHash[n - 1 + row - col] = 0;
                 rowHash[row] = 0;
                 thirdHash[row + col] = 0;
@@ -121,4 +131,3 @@ class Solution {
         return ans;
     }
 }
-*/
