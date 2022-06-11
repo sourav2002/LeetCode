@@ -40,5 +40,14 @@ class Solution {
         }
         return ans;
     }
-    
 }
+
+/*
+Same code as Binary Tree Level Order Traversal.
+just take a variable (in my solution, it is c) to check if current **row is even or odd**
+**if it is even** then **insert original** row-list in ans-list
+else **insert reverse** of row-list in our ans-list
+
+Because here we are using **reverse method** which **take O(n) time**, we are calling reverse method only half of height of binary tree times
+**height of binary tree / 2**, because we are calling this method alternatively.
+*/
