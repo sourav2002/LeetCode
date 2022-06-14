@@ -13,7 +13,6 @@
  *     }
  * }
  */
-/*
 class Solution{
     public int kthSmallest(TreeNode root, int k){
         Stack<TreeNode> st = new Stack();
@@ -30,7 +29,7 @@ class Solution{
     }
 }
 
-*/
+/*
 class Solution {
     
     int result = Integer.MIN_VALUE;
@@ -47,3 +46,4 @@ class Solution {
         traverse(root.right, k);       
     }
 }
+*/
