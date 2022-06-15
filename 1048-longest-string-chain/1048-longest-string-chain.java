@@ -1,3 +1,5 @@
+
+// to understand the solution, for dry run, uncomment the System.out.println(); statement
 class Solution {
         public int longestStrChain(String[] words) {
         Map<String, Integer> dp = new HashMap<>();
@@ -10,6 +12,7 @@ class Solution {
                 best = Math.max(best, dp.getOrDefault(prev, 0) + 1);
             }
             dp.put(word, best);
+            // System.out.println("after some update"+ dp);
             res = Math.max(res, best);
         }
         return res;
