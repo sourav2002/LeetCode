@@ -26,6 +26,6 @@ class Solution {
         }
         
         // while loop is terminated bcz now char at i and j is not same so we are one step ahead
-        return j - i - 1;
+        return j - i - 1; 
     }
 }
