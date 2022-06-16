@@ -3,6 +3,39 @@ class Solution {
         if(s != null && s.length() <= 1) 
             return s;
         
+        String res = "";
+        int resLen = 0;
+        for(int i=0; i< s.length(); i++){
+            int l = i, r = i;
+            while(l >=0 && r < s.length() && s.charAt(l) == s.charAt(r)){
+                if(r-l+1 > resLen){
+                    res = s.substring(l, r+1);
+                    resLen = r-l+1;
+                }
+                l--;
+                r++;
+            }
+            
+            l = i; r = i+1;
+            while(l >=0 && r < s.length() && s.charAt(l) == s.charAt(r)){
+                if(r-l+1 > resLen){
+                    res = s.substring(l, r+1);
+                    resLen = r-l+1;
+                }
+                l--;
+                r++;
+            }
+        }
+        return res;
+    }
+}
+
+/*
+class Solution {
+    public String longestPalindrome(String s) {
+        if(s != null && s.length() <= 1) 
+            return s;
+        
         int len =0, start = 0, end =0, len1 =0, len2 =0; 
         
         for(int i =0; i<s.length(); i++){
@@ -29,3 +62,4 @@ class Solution {
         return j - i - 1; 
     }
 }
+*/
