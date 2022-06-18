@@ -18,11 +18,7 @@ class Solution {
         if(arr[i] != '0'){
            x = dfs(arr, i-1, dp);
         }
-        if(arr[i-1] != '0'){
-            if(arr[i-1] == '2' && arr[i] > '6' || arr[i-1] > '2'){
-                dp[i] = x;
-                return x;
-            }
+        if(arr[i-1] != '0' && arr[i-1] <= '2' && !(arr[i-1] == '2' && arr[i] > '6')){
             y = dfs(arr, i-2, dp);
         }
         return dp[i] = x+y;
