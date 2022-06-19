@@ -1,4 +1,27 @@
+// binary  search on sorted list
+class Solution {
+
+    public List<List<String>> suggestedProducts(String[] products, String searchWord) {
+        List<List<String>> ans = new ArrayList<>();
+        Arrays.sort(products); // sort products.
+        for (int i = 1; i <= searchWord.length(); ++i) {
+            String cur = searchWord.substring(0, i);
+            int k = Arrays.binarySearch(products, cur);
+            while (
+                k > 0 && cur.equals(products[k - 1])
+            ) --k; // in case there are more than 1 cur in products. // find the first one.
+            if (
+                k < 0
+            ) k = ~k; // no cur in products.  // find the first one larger than cur.
+            List<String> suggestion = new ArrayList<>();
+            for (int j = k + 3; k < products.length && k < j && products[k].startsWith(cur); ++k) suggestion.add(products[k]);
+            ans.add(suggestion);
+        }
+        return ans;
+    }
+}
 // using trie data structure
+/*
 class Solution {
 
     class Trie {
@@ -38,6 +61,7 @@ class Solution {
         return ans;
     }
 }
+*/
 // brute force solution
 // time complexity = n * m * o (where n is the size of searchWOrd len and m is size of products array and o is the size of each string in array)
 /*
