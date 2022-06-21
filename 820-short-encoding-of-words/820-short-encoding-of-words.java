@@ -12,7 +12,7 @@ class Solution {
 
     public int minimumLengthEncoding(String[] words) {
         TrieNode root = new TrieNode();
-        for (String word : words) insert(root, word);
+        for(String word : words) insert(root, word);
 
         Stack<TrieNode> stack = new Stack<>();
         stack.add(root);
