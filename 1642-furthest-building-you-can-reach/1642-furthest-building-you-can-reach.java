@@ -1,38 +1,24 @@
 class Solution {
 
-    public int furthestBuilding(int[] heights, int bricks, int ladders) {
+    public int furthestBuilding(int[] A, int bricks, int ladders) {
         PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
-        int bricksUsed = 0;
-        int n = heights.length;
         int i = 0;
-        for (; i < n - 1; i++) {
-            int diff = heights[i + 1] - heights[i];
-
-            // If current height is higher, we don't have to use
-            // bricks or ladder.
-            if (diff <= 0) {
-                continue;
-            }
-
-            // We have to use either brick or ladder.
-            if (diff + bricksUsed <= bricks) {
-                // Prefer bricks because we can later change from
-                // bricks to ladder as we will see below.
-                bricksUsed += diff;
-                pq.add(diff);
+        int totalBricksUsed = 0;
+        for (i = 0; i < A.length - 1; i++) {
+            if (A[i + 1] <= A[i]) continue;
+            int d = A[i + 1] - A[i];
+            if (totalBricksUsed + d <= bricks) {
+                totalBricksUsed += d;
+                pq.add(d);
             } else if (ladders > 0) {
-                // If even bricks are insufficient, check ladders.
-                if (!pq.isEmpty() && pq.peek() > diff) {
-                    bricksUsed += diff - pq.peek();
+                if (!pq.isEmpty() && pq.peek() > d) {
+                    totalBricksUsed = totalBricksUsed - pq.peek() + d;
                     pq.poll();
-                    pq.add(diff);
+                    pq.add(d);
                 }
                 ladders--;
-            }
-            // Unfortunately, it's not possible to go ahead any further.
-            else break;
+            } else break;
         }
-        // This is the max we can go ahead.
         return i;
     }
 }
