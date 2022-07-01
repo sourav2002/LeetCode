@@ -1,6 +1,6 @@
 class Solution {
     public int maximumUnits(int[][] arr, int truckSize) {
-        Arrays.sort(arr, (a,b) ->{
+        Arrays.sort(arr, (int[]a,int []b) ->{
             return b[1] - a[1];
         });
         int c = 0;
