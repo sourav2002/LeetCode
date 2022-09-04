@@ -1,20 +1,6 @@
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
 
 // custom comparator
+/*
 class Solution {
     class Triplet implements Comparable<Triplet>{
         int x;
@@ -64,10 +50,11 @@ class Solution {
         return ans;  
     }
 }
+*/
 
 
 // dfs traversal
-/*
+
 class Solution{
     public List<List<Integer>> verticalTraversal(TreeNode root) {
         TreeMap<Integer, TreeMap<Integer, PriorityQueue<Integer>>> map = new TreeMap();
@@ -100,7 +87,7 @@ class Solution{
         dfs(root.right, x+1, y+1, map);
     }
 }
-*/
+
 
 // bfs or linear traversal 
 /*
@@ -116,9 +103,10 @@ class Solution {
             this.col = y;
         }
     }
+    
     public List<List<Integer>> verticalTraversal(TreeNode root) {
         TreeMap<Integer, TreeMap<Integer, PriorityQueue<Integer>>> map = new TreeMap();
-        // bfd traversal
+        // bfs traversal
         Queue<Tuple> q = new LinkedList();
         q.offer(new Tuple(root, 0, 0));
         
