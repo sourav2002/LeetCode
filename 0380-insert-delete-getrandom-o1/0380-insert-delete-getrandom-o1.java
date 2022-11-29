@@ -19,8 +19,8 @@ class RandomizedSet {
     
     public int getRandom() {
         Random rndm = new Random();
-        Integer[] arrayNumbers = set.toArray(new Integer[set.size()]);
+        Object[] arr = set.toArray();
         int num = rndm.nextInt(set.size());
-        return arrayNumbers[num];
+        return (int) arr[num];
     }
 }
